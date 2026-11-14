@@ -10,6 +10,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/composition",
     "/sounddesign",
     "/contactme",
+    "/privacy",
     ...releases.map((release) => `/${release.slug}`),
   ];
   return paths.map((path) => ({

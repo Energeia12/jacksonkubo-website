@@ -62,6 +62,12 @@ export function SiteFooter() {
           ))}
         </ul>
         <p className="text-sm text-[#d4cec3]">© 2026 {site.name}</p>
+        <a
+          href="/privacy/"
+          className="text-sm text-[#d4cec3] underline decoration-white/30 underline-offset-4 hover:text-white hover:decoration-white"
+        >
+          Privacy policy
+        </a>
       </div>
     </footer>
   );
