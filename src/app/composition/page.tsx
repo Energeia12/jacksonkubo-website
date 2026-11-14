@@ -50,6 +50,20 @@ export default function CompositionPage() {
                   }
                 />
               ) : null}
+              {"video" in project && project.video ? (
+                <figure className="mt-8">
+                  <div className="overflow-hidden bg-black">
+                    <iframe
+                      title={project.video.title}
+                      src={`https://www.youtube-nocookie.com/embed/${project.video.id}`}
+                      className="aspect-video w-full"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                      allowFullScreen
+                    />
+                  </div>
+                  <figcaption className="mt-2 text-sm text-[#d4cec3]">{project.video.title}</figcaption>
+                </figure>
+              ) : null}
               {project.links.length > 0 ? (
                 <div className="mt-8 flex flex-wrap gap-3">
                   {project.links.map((link, index) => (
@@ -68,20 +82,6 @@ export default function CompositionPage() {
                     </a>
                   ))}
                 </div>
-              ) : null}
-              {"video" in project && project.video ? (
-                <figure className="mt-8">
-                  <div className="overflow-hidden bg-black">
-                    <iframe
-                      title={project.video.title}
-                      src={`https://www.youtube-nocookie.com/embed/${project.video.id}`}
-                      className="aspect-video w-full"
-                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                      allowFullScreen
-                    />
-                  </div>
-                  <figcaption className="mt-2 text-sm text-[#d4cec3]">{project.video.title}</figcaption>
-                </figure>
               ) : null}
             </div>
             <CueList cues={cuesFor(project.id)} />

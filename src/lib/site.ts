@@ -204,7 +204,7 @@ export const projects = [
     description:
       "B.L.U.E. (Build, Launch, Upgrade, Evolve) is a multiplayer PvP space-sandbox engineering game. You play a BlueHeaven Aerospace engineer: design spaceships that follow real-world physics, load them with as much firepower as they can carry, and test them against friends. Mind the heat.",
     image: "/media/blue-screen.jpg",
-    imageAlt: "A spacecraft climbing away from a planet toward a bright ring in space",
+    imageAlt: "",
     links: [
       {
         label: "Play on Steam",
