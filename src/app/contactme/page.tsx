@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { ContactForm } from "@/components/contact-form";
-import { Wordmark } from "@/components/wordmark";
+import { PageBanner } from "@/components/page-banner";
 import { site } from "@/lib/site";
 
 export const metadata: Metadata = {
@@ -11,19 +11,13 @@ export const metadata: Metadata = {
 export default function ContactPage() {
   return (
     <>
-      <section className="relative min-h-[42vh] overflow-hidden">
+      <PageBanner wordmark="/media/wordmark-contact.png" alt="Contact me">
         <img
           src="/media/contact-hero.jpg"
           alt=""
           className="absolute inset-0 h-full w-full object-cover object-[center_30%]"
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-black/25 via-black/10 to-[#07060d]" />
-        <div className="relative mx-auto flex min-h-[42vh] max-w-4xl items-end px-4 pt-28 pb-6">
-          <h1 className="w-full">
-            <Wordmark src="/media/wordmark-contact.png" alt="Contact me" />
-          </h1>
-        </div>
-      </section>
+      </PageBanner>
       <section
         className="bg-cover bg-center"
         style={{ backgroundImage: "url(/media/contact-sky.jpg)" }}
@@ -34,7 +28,7 @@ export default function ContactPage() {
               <p>
                 For scoring, sound design, and other professional work, write here or email{" "}
                 <a
-                  className="text-[#ffb07a] underline decoration-[#ffb07a]/50 underline-offset-4 hover:decoration-[#ffb07a]"
+                  className="underline decoration-white/40 underline-offset-4 hover:decoration-white"
                   href={`mailto:${site.email}`}
                 >
                   {site.email}

@@ -42,7 +42,7 @@ function CueRow({ cue, index }: { cue: Cue; index: number }) {
           onClick={toggle}
           aria-label={playing ? `Pause ${cue.title}` : `Play ${cue.title}`}
           aria-pressed={playing}
-          className="flex size-11 shrink-0 items-center justify-center rounded-full border border-[#ffb07a]/40 bg-[#ffb07a] text-[#2a1408] transition-colors hover:bg-[#ffc7a1]"
+          className="flex size-11 shrink-0 items-center justify-center rounded-full border border-white/80 bg-white text-[#141018] transition-colors hover:bg-[#f6f3ec]"
         >
           {playing ? <Pause className="size-4" /> : <Play className="ml-0.5 size-4" />}
         </button>
@@ -53,11 +53,11 @@ function CueRow({ cue, index }: { cue: Cue; index: number }) {
       <div className="relative mt-3 h-4">
         <div className="absolute inset-x-0 top-1/2 h-px -translate-y-1/2 bg-[#f6f3ec]/35" />
         <div
-          className="absolute top-1/2 h-px -translate-y-1/2 bg-[#ffb07a]"
+          className="absolute top-1/2 h-px -translate-y-1/2 bg-white"
           style={{ width: `${cue.duration ? (progress / cue.duration) * 100 : 0}%` }}
         />
         <div
-          className="absolute top-1/2 size-3.5 -translate-y-1/2 rounded-full bg-[#ffb07a]"
+          className="absolute top-1/2 size-3.5 -translate-y-1/2 rounded-full bg-white"
           style={{
             left: `clamp(0px, calc(${cue.duration ? (progress / cue.duration) * 100 : 0}% - 7px), calc(100% - 14px))`,
           }}
@@ -79,7 +79,7 @@ function CueRow({ cue, index }: { cue: Cue; index: number }) {
         />
       </div>
       {failed ? (
-        <p className="mt-2 text-sm text-[#ffb07a]" role="alert">
+        <p className="mt-2 text-sm text-white" role="alert">
           This recording did not load. Try again, or use a streaming link on this page.
         </p>
       ) : null}

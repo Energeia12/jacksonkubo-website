@@ -41,8 +41,8 @@ export function SiteHeader() {
                 href={item.href}
                 aria-current={active ? "page" : undefined}
                 className={cn(
-                  "rounded-full px-3 py-2 font-display text-[0.95rem] tracking-[0.08em] text-[#e7e1d6] uppercase transition-colors hover:text-white",
-                  active && "bg-white/10 text-white",
+                  "border-b border-transparent px-3 py-2 font-display text-[0.95rem] tracking-[0.08em] text-[#e7e1d6] uppercase transition-colors hover:text-white",
+                  active && "border-white text-white",
                 )}
               >
                 {item.label}
@@ -78,7 +78,7 @@ export function SiteHeader() {
                     aria-current={active ? "page" : undefined}
                     onClick={() => setOpen(false)}
                     className={cn(
-                      "block rounded-lg px-3 py-3 font-display tracking-[0.08em] text-[#e7e1d6] uppercase",
+                      "block px-3 py-3 font-display tracking-[0.08em] text-[#e7e1d6] uppercase",
                       active && "bg-white/10 text-white",
                     )}
                   >

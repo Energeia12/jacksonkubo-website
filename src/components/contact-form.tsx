@@ -98,7 +98,7 @@ export function ContactForm() {
           className="h-11 border-white/25 bg-[#0c0a12] text-white dark:bg-[#0c0a12]"
         />
         {errors.email ? (
-          <p id="email-error" className="text-sm text-[#ffb07a]" role="alert">
+          <p id="email-error" className="text-sm text-white" role="alert">
             {errors.email}
           </p>
         ) : null}
@@ -117,7 +117,7 @@ export function ContactForm() {
           className="min-h-40 border-white/25 bg-[#0c0a12] text-white dark:bg-[#0c0a12]"
         />
         {errors.message ? (
-          <p id="message-error" className="text-sm text-[#ffb07a]" role="alert">
+          <p id="message-error" className="text-sm text-white" role="alert">
             {errors.message}
           </p>
         ) : null}
@@ -131,7 +131,7 @@ export function ContactForm() {
       {opened ? (
         <p className="border border-white/15 bg-[#0c0a12] px-3 py-3 text-sm text-white" role="status">
           If your email app did not open, write directly to{" "}
-          <a className="text-[#ffb07a] underline" href={`mailto:${site.email}`}>
+          <a className="underline" href={`mailto:${site.email}`}>
             {site.email}
           </a>
           .

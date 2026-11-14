@@ -222,12 +222,7 @@ export const projects = [
     description:
       "BLEED RUNNER is a 2.5D cyberpunk beat-em-up. A lone knight, stricken with a plague, searches a mysterious spaceship for the cure and survives by grabbing, throwing, and pummeling enemies for blood.",
     image: "/media/bleed-art.png",
-    imageAlt: "Pixel-art cover for the BLEED RUNNER soundtrack",
-    videoFile: {
-      webm: "/media/bleed.webm",
-      mp4: "/media/bleed.mp4",
-      poster: "/media/bleed-poster.jpg",
-    },
+    imageAlt: "Cover art for the BLEED RUNNER original soundtrack",
     links: [
       {
         label: "Play on Steam",

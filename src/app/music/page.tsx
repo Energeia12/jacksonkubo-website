@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { Wordmark } from "@/components/wordmark";
+import { PageBanner } from "@/components/page-banner";
 import { releases } from "@/lib/site";
 
 export const metadata: Metadata = {
@@ -11,19 +11,13 @@ export const metadata: Metadata = {
 export default function MusicPage() {
   return (
     <>
-      <section className="relative min-h-[52vh] overflow-hidden">
+      <PageBanner wordmark="/media/wordmark-music.png" alt="My music">
         <img
           src="/media/music-banner.jpg"
           alt=""
           className="absolute inset-0 h-full w-full object-cover"
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-black/25 to-[#07060d]" />
-        <div className="relative mx-auto flex min-h-[52vh] max-w-4xl items-end px-4 pt-28 pb-8">
-          <h1 className="w-full">
-            <Wordmark src="/media/wordmark-music.png" alt="My music" className="max-w-xl" />
-          </h1>
-        </div>
-      </section>
+      </PageBanner>
       <section
         className="bg-cover bg-center"
         style={{ backgroundImage: "url(/media/music-sky.jpg)" }}

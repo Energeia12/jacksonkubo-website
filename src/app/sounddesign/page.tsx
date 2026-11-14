@@ -1,30 +1,24 @@
 import type { Metadata } from "next";
-import { Wordmark } from "@/components/wordmark";
 import { HeroMedia } from "@/components/hero-media";
+import { PageBanner } from "@/components/page-banner";
 
 export const metadata: Metadata = {
   title: "Sound Design",
   description:
-    "Sound design by Jackson Kubo, including a redesign for Ivern and audio direction on B.L.U.E.",
+    "A sound redesign of Ivern, from League of Legends, by Jackson Kubo.",
 };
 
 export default function SoundDesignPage() {
   return (
     <>
-      <section className="relative min-h-[46vh] overflow-hidden bg-black">
+      <PageBanner wordmark="/media/wordmark-sound.png" alt="Sound design">
         <HeroMedia
           webm="/media/synth.webm"
           mp4="/media/synth.mp4"
           poster="/media/synth-poster.jpg"
           className="absolute inset-0 h-full w-full object-cover"
         />
-        <div className="absolute inset-0 bg-black/45" />
-        <div className="relative mx-auto flex min-h-[46vh] max-w-4xl items-end px-4 pt-28 pb-8">
-          <h1 className="w-full">
-            <Wordmark src="/media/wordmark-sound.png" alt="Sound design" />
-          </h1>
-        </div>
-      </section>
+      </PageBanner>
       <section
         className="relative bg-cover bg-center"
         style={{ backgroundImage: "url(/media/sound-nebula.jpg)" }}
@@ -35,8 +29,7 @@ export default function SoundDesignPage() {
               Sound Redesign for Ivern
             </h2>
             <p className="mt-5 text-lg leading-relaxed text-[#f3efe6]">
-              A sound redesign of Ivern, from League of Legends. Jackson is also Audio Lead on
-              B.L.U.E. at BlueHeaven Aerospace.
+              A sound redesign of Ivern, from League of Legends.
             </p>
             <figure className="mt-8">
               <div className="overflow-hidden bg-black">

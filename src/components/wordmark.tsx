@@ -14,7 +14,7 @@ export function Wordmark({
       src={src}
       alt={alt}
       className={cn(
-        "mx-auto w-full max-w-3xl mix-blend-screen select-none",
+        "mx-auto block h-auto w-auto max-w-full mix-blend-screen select-none",
         className,
       )}
     />
