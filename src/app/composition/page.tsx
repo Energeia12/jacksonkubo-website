@@ -28,13 +28,16 @@ export default function CompositionPage() {
           </h1>
         </div>
       </section>
-      <nav aria-label="Scores" className="border-b border-white/10 bg-[#07060d]">
-        <ul className="mx-auto flex max-w-6xl gap-2 overflow-x-auto px-4 py-3">
+      <nav
+        aria-label="Scores"
+        className="sticky top-16 z-40 border-b border-white/10 bg-[#07060d]/95"
+      >
+        <ul className="mx-auto flex max-w-6xl gap-x-6 gap-y-2 overflow-x-auto px-4 py-4">
           {projects.map((project) => (
             <li key={project.id}>
               <a
                 href={`#${project.id}`}
-                className="inline-flex whitespace-nowrap rounded-full px-3 py-2 text-sm text-white/75 hover:bg-white/10 hover:text-white"
+                className="inline-flex whitespace-nowrap py-2 text-sm text-[#d4cec3] underline-offset-4 hover:text-white hover:underline"
               >
                 {project.title}
               </a>
@@ -46,63 +49,68 @@ export default function CompositionPage() {
         <section
           key={project.id}
           id={project.id}
-          className="relative scroll-mt-24 border-t border-white/10"
+          className="relative scroll-mt-32 border-t border-white/10"
         >
           <img
             src={project.image}
             alt=""
             className="absolute inset-0 h-full w-full object-cover"
           />
-          <div className="absolute inset-0 bg-[#07060d]/78" />
-          <div className="relative mx-auto grid max-w-6xl gap-8 px-4 py-16 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)]">
+          <div className="absolute inset-0 bg-[#07060d]/82" />
+          <div className="relative mx-auto grid max-w-6xl gap-12 px-4 py-20 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] lg:items-start">
             <div>
-              <p className="font-display text-xs tracking-[0.22em] text-[#ffb07a] uppercase">
-                {project.kicker}
+              <h2 className="font-display text-4xl text-white sm:text-5xl">{project.title}</h2>
+              <p className="mt-5 max-w-[65ch] text-lg leading-relaxed text-[#f3efe6]">
+                {project.description}
               </p>
-              <h2 className="mt-2 font-display text-4xl text-white">{project.title}</h2>
-              <p className="mt-4 text-lg leading-relaxed text-white/85">{project.description}</p>
               {"videoFile" in project && project.videoFile ? (
                 <HeroMedia
                   webm={project.videoFile.webm}
                   mp4={project.videoFile.mp4}
                   poster={project.videoFile.poster}
-                  className="mt-6 aspect-square w-full max-w-sm object-cover"
+                  className="mt-8 aspect-square w-full max-w-sm object-cover"
                 />
               ) : project.imageAlt ? (
                 <img
                   src={project.image}
                   alt={project.imageAlt}
-                  className="mt-6 w-full max-w-md object-cover"
+                  className="mt-8 w-full max-w-md object-cover"
                 />
               ) : null}
               {project.links.length > 0 ? (
-                <div className="mt-6 flex flex-wrap gap-3">
-                  {project.links.map((link) => (
+                <div className="mt-8 flex flex-wrap gap-3">
+                  {project.links.map((link, index) => (
                     <a
                       key={link.href}
                       href={link.href}
                       target="_blank"
                       rel="noreferrer"
                       className={cn(
-                        buttonVariants({ variant: "outline" }),
-                        "h-10 bg-transparent px-4 text-white",
+                        buttonVariants({ variant: index === 0 ? "default" : "outline" }),
+                        index === 0
+                          ? "h-10 px-4"
+                          : "h-10 bg-transparent px-4 text-white",
                       )}
                     >
                       {link.label}
+                      <span className="sr-only"> (opens in a new tab)</span>
                     </a>
                   ))}
                 </div>
               ) : null}
               {"video" in project && project.video ? (
-                <div className="mt-6 overflow-hidden rounded-xl border border-white/10">
-                  <iframe
-                    title={project.video.title}
-                    src={`https://www.youtube-nocookie.com/embed/${project.video.id}`}
-                    className="aspect-video w-full"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    allowFullScreen
-                  />
-                </div>
+                <figure className="mt-8">
+                  <div className="overflow-hidden bg-black">
+                    <iframe
+                      title={project.video.title}
+                      src={`https://www.youtube-nocookie.com/embed/${project.video.id}`}
+                      className="aspect-video w-full"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                      allowFullScreen
+                    />
+                  </div>
+                  <figcaption className="mt-2 text-sm text-[#d4cec3]">{project.video.title}</figcaption>
+                </figure>
               ) : null}
             </div>
             <CueList cues={cuesFor(project.id)} />

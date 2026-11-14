@@ -54,14 +54,14 @@ export function SiteFooter() {
                 target="_blank"
                 rel="noreferrer"
                 aria-label={item.label}
-                className="flex size-10 items-center justify-center rounded-full text-white/75 transition-colors hover:bg-white/10 hover:text-white"
+                className="flex size-11 items-center justify-center rounded-full text-[#e7e1d6] transition-colors hover:bg-white/10 hover:text-white"
               >
                 <Icon label={item.label} />
               </a>
             </li>
           ))}
         </ul>
-        <p className="text-sm text-white/70">©2026 {site.name}</p>
+        <p className="text-sm text-[#d4cec3]">© 2026 {site.name}</p>
       </div>
     </footer>
   );

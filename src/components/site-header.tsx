@@ -18,7 +18,7 @@ export function SiteHeader() {
   const [open, setOpen] = useState(false);
 
   return (
-    <header className="fixed inset-x-0 top-0 z-50 border-b border-white/10 bg-[#07060d]/75 backdrop-blur-md">
+    <header className="fixed inset-x-0 top-0 z-50 border-b border-white/10 bg-[#07060d]/90 backdrop-blur-md">
       <a
         href="#content"
         className="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 focus:z-50 focus:bg-white focus:px-3 focus:py-2 focus:text-black"
@@ -28,7 +28,7 @@ export function SiteHeader() {
       <div className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-4 py-3 md:justify-center">
         <Link
           href="/"
-          className="font-display text-sm tracking-[0.22em] text-white uppercase md:hidden"
+          className="font-display text-sm tracking-[0.08em] text-white uppercase md:hidden"
         >
           Jackson Kubo
         </Link>
@@ -41,7 +41,7 @@ export function SiteHeader() {
                 href={item.href}
                 aria-current={active ? "page" : undefined}
                 className={cn(
-                  "rounded-full px-3 py-2 font-display text-[0.95rem] tracking-[0.14em] text-white/80 uppercase transition-colors hover:text-white",
+                  "rounded-full px-3 py-2 font-display text-[0.95rem] tracking-[0.08em] text-[#e7e1d6] uppercase transition-colors hover:text-white",
                   active && "bg-white/10 text-white",
                 )}
               >
@@ -53,7 +53,7 @@ export function SiteHeader() {
         <Button
           variant="ghost"
           size="icon"
-          className="text-white hover:bg-white/10 md:hidden"
+          className="size-11 min-h-11 min-w-11 text-white hover:bg-white/10 md:hidden"
           aria-expanded={open}
           aria-controls="mobile-nav"
           onClick={() => setOpen((value) => !value)}
@@ -78,7 +78,7 @@ export function SiteHeader() {
                     aria-current={active ? "page" : undefined}
                     onClick={() => setOpen(false)}
                     className={cn(
-                      "block rounded-lg px-3 py-3 font-display tracking-[0.16em] text-white/85 uppercase",
+                      "block rounded-lg px-3 py-3 font-display tracking-[0.08em] text-[#e7e1d6] uppercase",
                       active && "bg-white/10 text-white",
                     )}
                   >

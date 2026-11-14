@@ -28,21 +28,22 @@ export default function MusicPage() {
         className="bg-cover bg-center"
         style={{ backgroundImage: "url(/media/music-sky.jpg)" }}
       >
-        <div className="bg-[#07060d]/45">
-          <ul className="mx-auto grid max-w-6xl grid-cols-1 gap-8 px-4 py-14 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="bg-[#07060d]/62">
+          <ul className="mx-auto grid max-w-6xl grid-cols-1 gap-x-8 gap-y-12 px-4 py-16 sm:grid-cols-2 lg:grid-cols-3">
             {releases.map((release) => (
               <li key={release.slug}>
                 <Link href={`/${release.slug}`} className="group block">
                   <img
                     src={release.artwork}
-                    alt={release.artworkAlt}
-                    className="aspect-square w-full object-cover shadow-2xl transition-transform duration-300 group-hover:scale-[1.02]"
+                    alt=""
+                    className="aspect-square w-full object-cover shadow-[0_18px_40px_-24px_rgba(0,0,0,0.8)] transition-[filter] duration-300 group-hover:brightness-110"
                   />
-                  <p className="mt-3 text-center text-sm leading-snug text-white">
-                    Jackson Kubo — {release.title}
-                    <span className="mt-1 block text-white/65">
-                      {release.kind} · {release.year}
-                    </span>
+                  <p className="mt-4 font-display text-xl text-white">{release.title}</p>
+                  <p className="mt-1 text-sm text-[#d4cec3]">
+                    {release.kind}
+                    <span aria-hidden="true"> · </span>
+                    <span className="sr-only">, </span>
+                    {release.year}
                   </p>
                 </Link>
               </li>

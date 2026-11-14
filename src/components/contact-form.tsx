@@ -57,25 +57,29 @@ export function ContactForm() {
     <form onSubmit={onSubmit} noValidate className="space-y-4">
       <div className="grid gap-4 sm:grid-cols-2">
         <div className="space-y-2">
-          <Label htmlFor="firstName">First name</Label>
+          <Label htmlFor="firstName">
+            First name <span className="text-[#d4cec3]">(optional)</span>
+          </Label>
           <Input
             id="firstName"
             name="firstName"
             autoComplete="given-name"
             value={fields.firstName}
             onChange={(event) => update("firstName", event.target.value)}
-            className="h-11 bg-black/40 text-white"
+            className="h-11 border-white/25 bg-[#0c0a12] text-white dark:bg-[#0c0a12]"
           />
         </div>
         <div className="space-y-2">
-          <Label htmlFor="lastName">Last name</Label>
+          <Label htmlFor="lastName">
+            Last name <span className="text-[#d4cec3]">(optional)</span>
+          </Label>
           <Input
             id="lastName"
             name="lastName"
             autoComplete="family-name"
             value={fields.lastName}
             onChange={(event) => update("lastName", event.target.value)}
-            className="h-11 bg-black/40 text-white"
+            className="h-11 border-white/25 bg-[#0c0a12] text-white dark:bg-[#0c0a12]"
           />
         </div>
       </div>
@@ -91,10 +95,10 @@ export function ContactForm() {
           aria-describedby={errors.email ? "email-error" : undefined}
           value={fields.email}
           onChange={(event) => update("email", event.target.value)}
-          className="h-11 bg-black/40 text-white"
+          className="h-11 border-white/25 bg-[#0c0a12] text-white dark:bg-[#0c0a12]"
         />
         {errors.email ? (
-          <p id="email-error" className="text-sm text-[#ffb07a]">
+          <p id="email-error" className="text-sm text-[#ffb07a]" role="alert">
             {errors.email}
           </p>
         ) : null}
@@ -110,10 +114,10 @@ export function ContactForm() {
           aria-describedby={errors.message ? "message-error" : undefined}
           value={fields.message}
           onChange={(event) => update("message", event.target.value)}
-          className="min-h-40 bg-black/40 text-white"
+          className="min-h-40 border-white/25 bg-[#0c0a12] text-white dark:bg-[#0c0a12]"
         />
         {errors.message ? (
-          <p id="message-error" className="text-sm text-[#ffb07a]">
+          <p id="message-error" className="text-sm text-[#ffb07a]" role="alert">
             {errors.message}
           </p>
         ) : null}
@@ -121,12 +125,11 @@ export function ContactForm() {
       <Button type="submit" size="lg" className="h-11 w-full text-base">
         Send email
       </Button>
-      <p className="text-sm text-white/70">
-        Sending opens your email app with this note addressed to Jackson. Nothing is stored on the
-        site.
+      <p className="text-sm text-[#d4cec3]">
+        This opens your email app with the note addressed to Jackson. The site does not keep a copy.
       </p>
       {opened ? (
-        <p className="rounded-lg border border-white/15 bg-black/40 px-3 py-3 text-sm text-white" role="status">
+        <p className="border border-white/15 bg-[#0c0a12] px-3 py-3 text-sm text-white" role="status">
           If your email app did not open, write directly to{" "}
           <a className="text-[#ffb07a] underline" href={`mailto:${site.email}`}>
             {site.email}

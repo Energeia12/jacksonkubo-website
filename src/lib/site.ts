@@ -72,7 +72,7 @@ export const releases: Release[] = [
     title: "Golden Age (Jackson Kubo Remix)",
     kind: "Remix",
     year: "2026",
-    description: "My remix of Gabe Holme's Golden Age.",
+    description: "A remix of Gabe Holmes’ Golden Age.",
     artwork: "/media/golden.jpg",
     artworkAlt: "A hand reaching through bright blue water, artwork for Golden Age",
     spotifyId: "15dz5h24rackcuSH6hWrSR",
@@ -84,8 +84,7 @@ export const releases: Release[] = [
     title: "Digital Landscape",
     kind: "Album",
     year: "2025",
-    description:
-      "Digital Landscape is an electronic album about the ever-changing digital world we live in.",
+    description: "An electronic album about the ever-changing digital world.",
     artwork: "/media/digital.jpg",
     artworkAlt: "Album artwork for Digital Landscape",
     spotifyId: "6FiBq12zSvIx1YgliMJoVD",
@@ -108,7 +107,7 @@ export const releases: Release[] = [
     title: "Crystal Sea",
     kind: "EP",
     year: "2025",
-    description: "Crystal Sea is an ambient synth EP.",
+    description: "An ambient synth EP.",
     artwork: "/media/crystal.jpg",
     artworkAlt: "Album artwork for Crystal Sea",
     spotifyId: "1YrCj9MC5RvvgWyMlbVqP8",
@@ -126,7 +125,7 @@ export const releases: Release[] = [
     title: "Save the World!!!",
     kind: "Single",
     year: "2024",
-    description: "Save the World!!! is a single.",
+    description: "A standalone single.",
     artwork: "/media/save.jpg",
     artworkAlt: "Album artwork for Save the World!!!",
     spotifyId: "6170P9hOOFkJepYk8MqUmi",
@@ -138,7 +137,7 @@ export const releases: Release[] = [
     title: "As Long as You're Happy",
     kind: "Single",
     year: "2024",
-    description: "As Long as You're Happy is a two-song single.",
+    description: "A two-song single.",
     artwork: "/media/happy.jpg",
     artworkAlt: "Album artwork for As Long as You're Happy",
     spotifyId: "4Qv7SrMfyC6PYRQEgiuC7Q",
@@ -151,8 +150,7 @@ export const releases: Release[] = [
     title: "The Process of Life",
     kind: "EP",
     year: "2023",
-    description:
-      "The Process of Life is an electronic EP that explores the depths of existential experience.",
+    description: "An electronic EP on existential experience.",
     artwork: "/media/process.jpg",
     artworkAlt: "Album artwork for The Process of Life",
     spotifyId: "4PqKBi1tEGmwjjVafdVQzV",
@@ -171,8 +169,7 @@ export const releases: Release[] = [
     title: "Dreaming of You",
     kind: "Album",
     year: "2023",
-    description:
-      "Dreaming of You is an indie pop love letter and my first album release.",
+    description: "An indie pop love letter, and his first album.",
     artwork: "/media/dreaming.jpg",
     artworkAlt: "Album artwork for Dreaming of You",
     spotifyId: "0I7NWLvDkEoS1ZWjJAy2yz",
@@ -204,9 +201,8 @@ export const projects = [
   {
     id: "blue",
     title: "B.L.U.E.",
-    kicker: "Build. Launch. Upgrade. Evolve.",
     description:
-      "B.L.U.E. (Build, Launch, Upgrade, Evolve) is a multiplayer PVP space sandbox engineering simulator. As a BlueHeaven Aerospace Engineer, you design spaceships that follow real world physics, load it with maximum fire power, and test it against your best friends. Note: mind the heat!",
+      "B.L.U.E. (Build, Launch, Upgrade, Evolve) is a multiplayer PvP space-sandbox engineering game. You play a BlueHeaven Aerospace engineer: design spaceships that follow real-world physics, load them with as much firepower as they can carry, and test them against friends. Mind the heat.",
     image: "/media/blue-screen.jpg",
     imageAlt: "A spacecraft climbing away from a planet toward a bright ring in space",
     links: [
@@ -223,9 +219,8 @@ export const projects = [
   {
     id: "bleed",
     title: "BLEED RUNNER",
-    kicker: "Original score",
     description:
-      "BLEED RUNNER is a 2.5D cyberpunk beat-em-up in which a lone knight fights an encroaching plague! Suddenly stricken with the disease, seek the cure on the mysterious spaceship and survive by grabbing, throwing, and pummeling enemies for blood.",
+      "BLEED RUNNER is a 2.5D cyberpunk beat-em-up. A lone knight, stricken with a plague, searches a mysterious spaceship for the cure and survives by grabbing, throwing, and pummeling enemies for blood.",
     image: "/media/bleed-art.png",
     imageAlt: "Pixel-art cover for the BLEED RUNNER soundtrack",
     videoFile: {
@@ -251,9 +246,8 @@ export const projects = [
   {
     id: "oosia",
     title: "Oosia",
-    kicker: "Puzzle adventure",
     description:
-      "Inspired by quantum mechanics, OOSIA is a puzzle adventure game about making abstract mental connections.",
+      "Inspired by quantum mechanics, Oosia is a puzzle adventure about making abstract mental connections.",
     image: "/media/oosia-art.png",
     imageAlt: "A small voxel house with the letters of Oosia floating above the garden",
     links: [{ label: "Visit Oosia", href: "https://joeycents.com/oosia" }],
@@ -261,9 +255,8 @@ export const projects = [
   {
     id: "crescendo",
     title: "Crescendo",
-    kicker: "Interactive music",
     description:
-      "Crescendo is a small Unity project I made to demo interactive music techniques in Wwise.",
+      "Crescendo is a Unity project that demonstrates interactive music techniques in Wwise.",
     image: "/media/crescendo.jpg",
     imageAlt: "A voxel concert hall facing a pipe organ and a red curtain",
     links: [],
@@ -275,8 +268,7 @@ export const projects = [
   {
     id: "demos",
     title: "Various Demo Tracks",
-    kicker: "Sketches",
-    description: "Cues from other game and interactive experiments.",
+    description: "Cues from other games and interactive experiments.",
     image: "/media/demo-bg.jpg",
     imageAlt: "",
     links: [],

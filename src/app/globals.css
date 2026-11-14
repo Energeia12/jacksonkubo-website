@@ -134,6 +134,23 @@
   }
   html {
     @apply font-sans;
+    scrollbar-color: #4a415c #07060d;
+  }
+  :focus-visible {
+    outline: 2px solid #ffb07a;
+    outline-offset: 3px;
+  }
+  input,
+  textarea {
+    caret-color: #ffb07a;
+  }
+  h1,
+  h2,
+  h3 {
+    text-wrap: balance;
+  }
+  p {
+    text-wrap: pretty;
   }
 }
 

@@ -31,36 +31,40 @@ export default function HomePage() {
         className="relative bg-cover bg-center"
         style={{ backgroundImage: "url(/media/galaxy.jpg)" }}
       >
-        <div className="bg-[#07060d]/55">
-          <div className="mx-auto max-w-3xl px-4 py-20 text-center">
-            <Wordmark src="/media/wordmark-about.png" alt="About me" className="max-w-md" />
-            <div className="mt-6 space-y-6 text-lg leading-relaxed text-white/90 sm:text-xl">
+        <div className="bg-[#07060d]/72">
+          <div className="mx-auto max-w-[68ch] px-4 py-24">
+            <Wordmark
+              src="/media/wordmark-about.png"
+              alt="About me"
+              className="mx-0 max-w-xs"
+            />
+            <div className="mt-8 space-y-6 text-lg leading-relaxed text-[#f3efe6]">
               <p>
                 Jackson Kubo creates music for an infinite universe. Combining experimental
                 electronic synthesis, live acoustic instrumentation, and sounds of the natural
                 world, he crafts living soundscapes at the intersection of reality and the beyond.
               </p>
               <p>
-                Growing up, Jackson started his musical journey learning guitar, which soon evolved
-                into an obsession with music production and composition. That obsession led him to
-                Berklee College of Music, where he studied Games and Interactive Media Scoring. He
-                has since relocated to Los Angeles, where the sprawling cityscape and surrounding
-                nature fuel his creativity.
+                He started on guitar, and that practice became an obsession with production and
+                composition. He studied Games and Interactive Media Scoring at Berklee College of
+                Music, then moved to Los Angeles, where the city and the surrounding landscape shape
+                the music.
               </p>
               <p>
-                Jackson is currently working as the Audio Lead for{" "}
+                He is Audio Lead on{" "}
                 <a
                   href="https://store.steampowered.com/app/4681380/BLUE/"
-                  className="underline decoration-white/40 underline-offset-4 hover:decoration-white"
+                  className="underline decoration-[#ffb07a]/50 underline-offset-4 hover:decoration-[#ffb07a]"
                   target="_blank"
                   rel="noreferrer"
                 >
                   B.L.U.E.
+                  <span className="sr-only"> (opens in a new tab)</span>
                 </a>{" "}
-                (Build. Launch. Upgrade. Evolve.) at BlueHeaven Aerospace Corporation.
+                (Build, Launch, Upgrade, Evolve) at BlueHeaven Aerospace Corporation.
               </p>
             </div>
-            <div className="mt-10 flex flex-col items-center justify-center gap-3 sm:flex-row">
+            <div className="mt-10 flex flex-col gap-3 sm:flex-row">
               <Link href="/music" className={cn(buttonVariants({ size: "lg" }), "h-11 px-6")}>
                 Listen to the records
               </Link>

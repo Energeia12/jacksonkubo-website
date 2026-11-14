@@ -4,7 +4,7 @@ import { Wordmark } from "@/components/wordmark";
 import { site } from "@/lib/site";
 
 export const metadata: Metadata = {
-  title: "Contact Me",
+  title: "Contact",
   description: "Professional inquiries for composer and sound designer Jackson Kubo.",
 };
 
@@ -28,22 +28,22 @@ export default function ContactPage() {
         className="bg-cover bg-center"
         style={{ backgroundImage: "url(/media/contact-sky.jpg)" }}
       >
-        <div className="bg-[#07060d]/50">
-          <div className="mx-auto grid max-w-5xl gap-10 px-4 py-14 lg:grid-cols-[0.8fr_1.2fr]">
-            <div className="text-lg leading-relaxed text-white">
+        <div className="bg-[#07060d]/72">
+          <div className="mx-auto grid max-w-5xl gap-12 px-4 py-20 lg:grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)]">
+            <div className="max-w-[42ch] text-lg leading-relaxed text-[#f3efe6]">
               <p>
-                If you have any professional inquiries, please leave a message here, or email me
-                at:{" "}
-                <a className="text-[#ffb07a] underline" href={`mailto:${site.email}`}>
+                For scoring, sound design, and other professional work, write here or email{" "}
+                <a
+                  className="text-[#ffb07a] underline decoration-[#ffb07a]/50 underline-offset-4 hover:decoration-[#ffb07a]"
+                  href={`mailto:${site.email}`}
+                >
                   {site.email}
                 </a>
                 .
               </p>
               <p className="mt-6">I do not do audio work for free.</p>
             </div>
-            <div className="rounded-2xl border border-white/10 bg-black/35 p-4 sm:p-6">
-              <ContactForm />
-            </div>
+            <ContactForm />
           </div>
         </div>
       </section>
