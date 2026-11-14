@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { ContentPanel } from "@/components/content-panel";
 import { PageBanner } from "@/components/page-banner";
 import { releases } from "@/lib/site";
 
@@ -18,12 +19,8 @@ export default function MusicPage() {
           className="absolute inset-0 h-full w-full object-cover"
         />
       </PageBanner>
-      <section
-        className="bg-cover bg-center"
-        style={{ backgroundImage: "url(/media/music-sky.jpg)" }}
-      >
-        <div className="bg-[#07060d]/62">
-          <ul className="mx-auto grid max-w-6xl grid-cols-1 gap-x-8 gap-y-12 px-4 py-16 sm:grid-cols-2 lg:grid-cols-3">
+      <ContentPanel image="/media/music-sky.jpg">
+          <ul className="grid grid-cols-1 gap-x-8 gap-y-12 sm:grid-cols-2 lg:grid-cols-3">
             {releases.map((release) => (
               <li key={release.slug}>
                 <Link href={`/${release.slug}`} className="group block">
@@ -43,8 +40,7 @@ export default function MusicPage() {
               </li>
             ))}
           </ul>
-        </div>
-      </section>
+      </ContentPanel>
     </>
   );
 }

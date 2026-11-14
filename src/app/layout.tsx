@@ -70,7 +70,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
           dangerouslySetInnerHTML={{ __html: JSON.stringify(personJsonLd) }}
         />
         <SiteHeader />
-        <main id="content" className="flex-1">
+        <main id="content" className="flex flex-1 flex-col">
           {children}
         </main>
         <SiteFooter />

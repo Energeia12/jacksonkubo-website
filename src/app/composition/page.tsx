@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { contentFrameClass } from "@/components/content-panel";
 import { CueList } from "@/components/cue-list";
 import { PageBanner } from "@/components/page-banner";
 import { buttonVariants } from "@/components/ui/button";
@@ -25,16 +26,16 @@ export default function CompositionPage() {
         <section
           key={project.id}
           id={project.id}
-          className="relative scroll-mt-24 border-t border-white/10"
+          className="relative flex grow scroll-mt-24 flex-col"
         >
           <img
             src={"background" in project ? project.background : project.image}
             alt=""
             className="absolute inset-0 h-full w-full object-cover"
           />
-          <div className="absolute inset-0 bg-[#07060d]/82" />
-          <div className="relative mx-auto grid max-w-6xl gap-12 px-4 py-20 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] lg:items-start">
-            <div>
+          <div className={cn(contentFrameClass(), "grow")}>
+          <div className="grid min-w-0 grid-cols-[minmax(0,1fr)] gap-12 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] lg:items-start">
+            <div className="min-w-0">
               <h2 className="font-display text-4xl text-white sm:text-5xl">{project.title}</h2>
               <p className="mt-5 max-w-[65ch] text-lg leading-relaxed text-[#f3efe6]">
                 {project.description}
@@ -85,6 +86,7 @@ export default function CompositionPage() {
               ) : null}
             </div>
             <CueList cues={cuesFor(project.id)} />
+          </div>
           </div>
         </section>
       ))}

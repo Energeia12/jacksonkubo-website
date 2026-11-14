@@ -35,8 +35,8 @@ function CueRow({ cue, index }: { cue: Cue; index: number }) {
   }
 
   return (
-    <li className="py-3">
-      <div className="flex items-center gap-3">
+    <li className="min-w-0 py-3">
+      <div className="flex min-w-0 items-center gap-3">
         <button
           type="button"
           onClick={toggle}
@@ -99,7 +99,7 @@ function CueRow({ cue, index }: { cue: Cue; index: number }) {
 export function CueList({ cues }: { cues: Cue[] }) {
   if (cues.length === 0) return null;
   return (
-    <ol className="divide-y divide-white/15 border-y border-white/15">
+    <ol className="min-w-0 divide-y divide-white/15 border-y border-white/15">
       {cues.map((cue, index) => (
         <CueRow key={cue.id} cue={cue} index={index} />
       ))}

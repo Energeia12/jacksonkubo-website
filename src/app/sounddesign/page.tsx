@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { HeroMedia } from "@/components/hero-media";
+import { ContentPanel } from "@/components/content-panel";
 import { PageBanner } from "@/components/page-banner";
 
 export const metadata: Metadata = {
@@ -19,12 +20,8 @@ export default function SoundDesignPage() {
           className="absolute inset-0 h-full w-full object-cover"
         />
       </PageBanner>
-      <section
-        className="relative bg-cover bg-center"
-        style={{ backgroundImage: "url(/media/sound-nebula.jpg)" }}
-      >
-        <div className="bg-[#07060d]/72">
-          <div className="mx-auto max-w-[68ch] px-4 py-20">
+      <ContentPanel image="/media/sound-nebula.jpg" width="max-w-3xl">
+          <div>
             <h2 className="font-display text-4xl text-white sm:text-5xl">
               Sound Redesign for Ivern
             </h2>
@@ -46,8 +43,7 @@ export default function SoundDesignPage() {
               </figcaption>
             </figure>
           </div>
-        </div>
-      </section>
+      </ContentPanel>
     </>
   );
 }

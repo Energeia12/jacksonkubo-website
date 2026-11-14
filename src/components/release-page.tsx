@@ -1,11 +1,12 @@
 import Link from "next/link";
+import { ContentPanel } from "@/components/content-panel";
 import { buttonVariants } from "@/components/ui/button";
 import type { Release } from "@/lib/site";
 import { cn } from "cn";
 
 export function ReleasePage({ release }: { release: Release }) {
   return (
-    <article>
+    <article className="flex grow flex-col">
       <header className="relative min-h-[70vh] overflow-hidden">
         <img
           src={release.artwork}
@@ -25,8 +26,9 @@ export function ReleasePage({ release }: { release: Release }) {
           </div>
         </div>
       </header>
-      <div className="mx-auto grid max-w-5xl gap-12 px-4 py-16 lg:grid-cols-[minmax(0,1fr)_300px]">
-        <div>
+      <ContentPanel image={release.artwork} width="max-w-5xl">
+      <div className="grid min-w-0 grid-cols-[minmax(0,1fr)] gap-12 lg:grid-cols-[minmax(0,1fr)_300px]">
+        <div className="min-w-0">
           <p className="max-w-[65ch] text-lg leading-relaxed text-[#f3efe6]">{release.description}</p>
           <h2 className="mt-12 font-display text-2xl text-white">Tracks</h2>
           <ol className="mt-4 divide-y divide-white/15 border-y border-white/15">
@@ -65,6 +67,7 @@ export function ReleasePage({ release }: { release: Release }) {
           </Link>
         </aside>
       </div>
+      </ContentPanel>
     </article>
   );
 }

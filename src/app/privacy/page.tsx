@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { ContentPanel } from "@/components/content-panel";
 import { site } from "@/lib/site";
 
 export const metadata: Metadata = {
@@ -8,7 +9,8 @@ export const metadata: Metadata = {
 
 export default function PrivacyPage() {
   return (
-    <article className="mx-auto max-w-3xl px-4 py-20">
+    <ContentPanel image="/media/galaxy.jpg" width="max-w-3xl" underHeader>
+    <article>
       <h1 className="font-display text-4xl text-white sm:text-5xl">Privacy policy</h1>
       <p className="mt-4 text-sm text-[#d4cec3]">Updated November 14, 2026</p>
       <div className="mt-10 space-y-10 text-lg leading-relaxed text-[#f3efe6]">
@@ -136,5 +138,6 @@ export default function PrivacyPage() {
         </section>
       </div>
     </article>
+    </ContentPanel>
   );
 }

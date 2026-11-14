@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { ContactForm } from "@/components/contact-form";
+import { ContentPanel } from "@/components/content-panel";
 import { PageBanner } from "@/components/page-banner";
 import { site } from "@/lib/site";
 
@@ -18,12 +19,8 @@ export default function ContactPage() {
           className="absolute inset-0 h-full w-full object-cover object-[center_30%]"
         />
       </PageBanner>
-      <section
-        className="bg-cover bg-center"
-        style={{ backgroundImage: "url(/media/contact-sky.jpg)" }}
-      >
-        <div className="bg-[#07060d]/72">
-          <div className="mx-auto grid max-w-5xl gap-12 px-4 py-20 lg:grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)]">
+      <ContentPanel image="/media/contact-sky.jpg" width="max-w-5xl">
+          <div className="grid gap-12 lg:grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)]">
             <div className="max-w-[42ch] text-lg leading-relaxed text-[#f3efe6]">
               <p>
                 For scoring, sound design, and other professional work, write here or email{" "}
@@ -39,8 +36,7 @@ export default function ContactPage() {
             </div>
             <ContactForm />
           </div>
-        </div>
-      </section>
+      </ContentPanel>
     </>
   );
 }

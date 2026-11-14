@@ -1,3 +1,4 @@
+import { ContentPanel } from "@/components/content-panel";
 import { HeroMedia } from "@/components/hero-media";
 import { Wordmark } from "@/components/wordmark";
 
@@ -28,12 +29,8 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section
-        className="relative bg-cover bg-center"
-        style={{ backgroundImage: "url(/media/galaxy.jpg)" }}
-      >
-        <div className="bg-[#07060d]/72">
-          <div className="mx-auto max-w-[68ch] px-4 pt-24">
+      <ContentPanel image="/media/galaxy.jpg">
+          <div className="mx-auto max-w-[68ch] pt-8">
             <div className="space-y-6 text-lg leading-relaxed text-[#f3efe6]">
               <p>
                 Jackson Kubo creates music for an infinite universe. Combining experimental
@@ -61,15 +58,14 @@ export default function HomePage() {
               </p>
             </div>
           </div>
-          <div className="px-4 pt-16 pb-24">
+          <div className="pt-16">
             <Wordmark
               src="/media/wordmark-about.png"
               alt="About me"
               className="max-h-20 sm:max-h-28"
             />
           </div>
-        </div>
-      </section>
+      </ContentPanel>
     </>
   );
 }
