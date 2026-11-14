@@ -158,3 +158,18 @@
   background: #f6f3ec;
   color: #141018;
 }
+
+@layer components {
+  .home-stripe {
+    height: 3px;
+    background-image: linear-gradient(
+      90deg,
+      #006fff 0%,
+      #4434e2 28%,
+      #792de3 48%,
+      #ff1ed7 70%,
+      #fc61e3 86%,
+      #6043f6 100%
+    );
+  }
+}

@@ -44,7 +44,8 @@ function Icon({ label }: { label: string }) {
 
 export function SiteFooter() {
   return (
-    <footer className="border-t border-white/10 bg-[#07060d]">
+    <footer className="bg-[#07060d]">
+      <div className="home-stripe" aria-hidden="true" />
       <div className="mx-auto flex max-w-6xl flex-col items-center gap-4 px-4 py-8">
         <ul className="flex items-center gap-2">
           {socials.map((item) => (

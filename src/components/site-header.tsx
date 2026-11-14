@@ -18,7 +18,7 @@ export function SiteHeader() {
   const [open, setOpen] = useState(false);
 
   return (
-    <header className="fixed inset-x-0 top-0 z-50 border-b border-white/10 bg-[#07060d]/90 backdrop-blur-md">
+    <header className="fixed inset-x-0 top-0 z-50 bg-[#07060d]/90 backdrop-blur-md">
       <a
         href="#content"
         className="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 focus:z-50 focus:bg-white focus:px-3 focus:py-2 focus:text-black"
@@ -90,6 +90,7 @@ export function SiteHeader() {
           </ul>
         </nav>
       ) : null}
+      <div className="home-stripe" aria-hidden="true" />
     </header>
   );
 }
