@@ -15,22 +15,20 @@ Open the local address printed by Next.js. Production files are created with:
 npm run build
 ```
 
-That writes a static site to `out/`, which any web host can serve.
+That writes a static site to `out/`.
 
-## Put it on GitHub Pages
+## Hosting
 
-The workflow in `.github/workflows/pages.yml` builds the site and publishes it when you push to `main`.
+The live site is the Cloudflare Worker `jacksonkubo-website`. `wrangler.jsonc` points it at `out/`. The Worker sends `jacksonkubo.com` to `www.jacksonkubo.com`.
 
-1. In the repository on GitHub, open Settings → Pages.
-2. Set the source to GitHub Actions.
-3. Push this project to `main`.
+Publish a new version with:
 
-`public/CNAME` is `www.jacksonkubo.com`. After the first deploy, point the domain at GitHub Pages:
+```bash
+npx wrangler login
+npm run deploy
+```
 
-- `www` as a CNAME to `<your-username>.github.io`
-- the apex domain with the A records GitHub lists under Pages
-
-GitHub’s custom-domain instructions cover the exact records.
+The source repository stays on GitHub. In Cloudflare Workers Builds, set the build command to `npm run build` and the deploy command to `npx wrangler deploy`. The custom domains are `jacksonkubo.com` and `www.jacksonkubo.com`.
 
 ## Score audio
 

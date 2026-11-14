@@ -6,7 +6,8 @@
     "dev": "next dev -p 3457 -H 0.0.0.0",
     "build": "next build",
     "start": "next start -p 3457 -H 0.0.0.0",
-    "lint": "eslint"
+    "lint": "eslint",
+    "deploy": "npm run build && wrangler deploy"
   },
   "dependencies": {
     "@base-ui/react": "^1.9.0",
@@ -27,6 +28,7 @@
     "eslint": "^9",
     "eslint-config-next": "16.4.6",
     "tailwindcss": "4.3.3",
-    "typescript": "^5"
+    "typescript": "^5",
+    "wrangler": "^4.162.0"
   }
 }
