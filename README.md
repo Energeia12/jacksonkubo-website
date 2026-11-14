@@ -44,4 +44,4 @@ Then set `useLocalScoreAudio` to `true` in `src/lib/audio.ts` and rebuild. The p
 
 ## Contact
 
-The contact form opens the visitor’s email app addressed to jacksonkubokawa@gmail.com. It does not store messages on a server.
+The contact form posts to the Worker at `/api/contact`. The Worker emails jacksonkubokawa@gmail.com through Cloudflare Email Sending and does not store the message. The sender address is website@jacksonkubo.com, and the visitor’s address is the reply-to. Email Sending must be turned on for jacksonkubo.com before that delivery works. Until then, the form opens the visitor’s email app addressed to the same inbox.

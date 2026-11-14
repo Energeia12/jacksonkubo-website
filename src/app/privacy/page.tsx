@@ -42,9 +42,10 @@ export default function PrivacyPage() {
           <h2 className="font-display text-2xl text-white">Messages</h2>
           <p>
             The contact form asks for a first name, a last name, an email address, and a note. The
-            first and last name are optional. Submitting the form does not send those fields to a
-            server on this site. It opens the email program on your device, addressed to{" "}
-            {site.email}, with the note filled in. The message exists only if you send that email.
+            first and last name are optional. Submitting the form sends those fields to{" "}
+            {site.email}. The site does not store a copy. If the site cannot deliver the note, it
+            opens the email program on your device with the same message, addressed to that inbox,
+            and the message exists only if you send that email.
           </p>
           <p>
             Jackson reads those emails to reply about scoring, sound design, and other professional

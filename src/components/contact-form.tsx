@@ -18,16 +18,27 @@ const empty: Fields = { firstName: "", lastName: "", email: "", message: "" };
 
 export function ContactForm() {
   const [fields, setFields] = useState<Fields>(empty);
+  const [honeypot, setHoneypot] = useState("");
   const [errors, setErrors] = useState<Partial<Record<keyof Fields, string>>>({});
-  const [opened, setOpened] = useState(false);
+  const [status, setStatus] = useState<"idle" | "sending" | "sent" | "opened">("idle");
 
   function update(key: keyof Fields, value: string) {
     setFields((current) => ({ ...current, [key]: value }));
     setErrors((current) => ({ ...current, [key]: undefined }));
-    setOpened(false);
+    setStatus((current) => (current === "sending" ? current : "idle"));
   }
 
-  function onSubmit(event: FormEvent<HTMLFormElement>) {
+  function openMailApp() {
+    const name = [fields.firstName, fields.lastName].filter(Boolean).join(" ") || "Someone";
+    const body = [`Name: ${name}`, `Email: ${fields.email.trim()}`, "", fields.message.trim()].join("\n");
+    const href = `mailto:${site.email}?subject=${encodeURIComponent(
+      `Professional inquiry from ${name}`,
+    )}&body=${encodeURIComponent(body)}`;
+    window.location.href = href;
+    setStatus("opened");
+  }
+
+  async function onSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     const nextErrors: Partial<Record<keyof Fields, string>> = {};
     if (!fields.email.trim() || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(fields.email)) {
@@ -39,22 +50,47 @@ export function ContactForm() {
     setErrors(nextErrors);
     if (Object.keys(nextErrors).length > 0) return;
 
-    const name = [fields.firstName, fields.lastName].filter(Boolean).join(" ") || "Someone";
-    const body = [
-      `Name: ${name}`,
-      `Email: ${fields.email.trim()}`,
-      "",
-      fields.message.trim(),
-    ].join("\n");
-    const href = `mailto:${site.email}?subject=${encodeURIComponent(
-      `Professional inquiry from ${name}`,
-    )}&body=${encodeURIComponent(body)}`;
-    window.location.href = href;
-    setOpened(true);
+    setStatus("sending");
+
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json", Accept: "application/json" },
+        body: JSON.stringify({
+          firstName: fields.firstName,
+          lastName: fields.lastName,
+          email: fields.email.trim(),
+          message: fields.message.trim(),
+          website: honeypot,
+        }),
+      });
+      const data = (await response.json().catch(() => ({}))) as { ok?: boolean };
+      if (response.ok && data.ok) {
+        setFields(empty);
+        setStatus("sent");
+        return;
+      }
+    } catch {
+      // The mail app below is the backup when the site cannot deliver.
+    }
+
+    openMailApp();
   }
 
   return (
-    <form onSubmit={onSubmit} noValidate className="space-y-4">
+    <form onSubmit={onSubmit} noValidate className="relative space-y-4">
+      <div className="absolute -left-[9999px] h-0 overflow-hidden" aria-hidden="true">
+        <label>
+          Website
+          <input
+            name="website"
+            tabIndex={-1}
+            autoComplete="off"
+            value={honeypot}
+            onChange={(event) => setHoneypot(event.target.value)}
+          />
+        </label>
+      </div>
       <div className="grid gap-4 sm:grid-cols-2">
         <div className="space-y-2">
           <Label htmlFor="firstName">
@@ -122,13 +158,14 @@ export function ContactForm() {
           </p>
         ) : null}
       </div>
-      <Button type="submit" size="lg" className="h-11 w-full text-base">
-        Send email
+      <Button type="submit" size="lg" className="h-11 w-full text-base" disabled={status === "sending"}>
+        {status === "sending" ? "Sending…" : "Send email"}
       </Button>
-      <p className="text-sm text-[#d4cec3]">
-        This opens your email app with the note addressed to Jackson. The site does not keep a copy.
-      </p>
-      {opened ? (
+      {status === "sent" ? (
+        <p className="border border-white/15 bg-[#0c0a12] px-3 py-3 text-sm text-white" role="status">
+          Sent to {site.email}. Jackson reads it from that inbox.
+        </p>
+      ) : status === "opened" ? (
         <p className="border border-white/15 bg-[#0c0a12] px-3 py-3 text-sm text-white" role="status">
           If your email app did not open, write directly to{" "}
           <a className="underline" href={`mailto:${site.email}`}>
@@ -136,7 +173,11 @@ export function ContactForm() {
           </a>
           .
         </p>
-      ) : null}
+      ) : (
+        <p className="text-sm text-[#d4cec3]">
+          This sends the note to {site.email}. The site does not keep a copy.
+        </p>
+      )}
     </form>
   );
 }
