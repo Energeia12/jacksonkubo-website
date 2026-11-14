@@ -28,7 +28,7 @@ export default function CompositionPage() {
           className="relative scroll-mt-24 border-t border-white/10"
         >
           <img
-            src={project.image}
+            src={"background" in project ? project.background : project.image}
             alt=""
             className="absolute inset-0 h-full w-full object-cover"
           />

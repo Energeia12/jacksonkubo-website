@@ -244,6 +244,7 @@ export const projects = [
     description:
       "Inspired by quantum mechanics, Oosia is a puzzle adventure about making abstract mental connections.",
     image: "/media/oosia-art.png",
+    background: "/media/crescendo.jpg",
     imageAlt: "A small voxel house with the letters of Oosia floating above the garden",
     links: [{ label: "Visit Oosia", href: "https://joeycents.com/oosia" }],
   },
@@ -252,8 +253,8 @@ export const projects = [
     title: "Crescendo",
     description:
       "Crescendo is a Unity project that demonstrates interactive music techniques in Wwise.",
-    image: "/media/crescendo.jpg",
-    imageAlt: "A voxel concert hall facing a pipe organ and a red curtain",
+    image: "/media/crescendo-still.jpg",
+    imageAlt: "",
     links: [],
     video: {
       id: "G7QjpHo0Vdc",
