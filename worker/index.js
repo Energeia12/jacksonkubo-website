@@ -51,6 +51,134 @@ function needsTrailingSlash(pathname) {
   return !last.includes(".");
 }
 
+const MEDIA = /\.(mp3|m4a|mp4|webm)$/i;
+
+export function parseByteRange(header, total) {
+  const match = /^bytes=(\d*)-(\d*)$/.exec(String(header).trim());
+  if (!match || (match[1] === "" && match[2] === "")) return null;
+  const suffix = match[1] === "";
+  const start = suffix ? Math.max(0, total - Number(match[2])) : Number(match[1]);
+  const end = suffix || match[2] === "" ? total - 1 : Number(match[2]);
+  if (!Number.isFinite(start) || !Number.isFinite(end) || start < 0 || end < start || start >= total) {
+    return { unsatisfiable: true };
+  }
+  return { start, end: Math.min(end, total - 1) };
+}
+
+function sliceStream(body, start, end) {
+  const wanted = end - start + 1;
+  let skipped = 0;
+  let sent = 0;
+  const reader = body.getReader();
+  return new ReadableStream({
+    async pull(controller) {
+      while (sent < wanted) {
+        const { done, value } = await reader.read();
+        if (done) {
+          controller.close();
+          return;
+        }
+        let chunk = value;
+        if (skipped < start) {
+          const need = start - skipped;
+          if (chunk.byteLength <= need) {
+            skipped += chunk.byteLength;
+            continue;
+          }
+          chunk = chunk.subarray(need);
+          skipped = start;
+        }
+        const remain = wanted - sent;
+        if (chunk.byteLength > remain) chunk = chunk.subarray(0, remain);
+        sent += chunk.byteLength;
+        controller.enqueue(chunk);
+        if (sent >= wanted) {
+          controller.close();
+          reader.cancel().catch(() => {});
+          return;
+        }
+      }
+    },
+    cancel() {
+      reader.cancel().catch(() => {});
+    },
+  });
+}
+
+function withAcceptRanges(response) {
+  const headers = new Headers(response.headers);
+  headers.set("Accept-Ranges", "bytes");
+  return new Response(response.body, {
+    status: response.status,
+    statusText: response.statusText,
+    headers,
+  });
+}
+
+async function fetchAsset(request, env) {
+  const url = new URL(request.url);
+  const media = MEDIA.test(url.pathname);
+  const rangeHeader = request.headers.get("Range");
+  if (!media || (request.method !== "GET" && request.method !== "HEAD") || !rangeHeader) {
+    const response = await env.ASSETS.fetch(request);
+    return media ? withAcceptRanges(response) : response;
+  }
+
+  const full = await env.ASSETS.fetch(new Request(request.url, { method: "GET" }));
+  if (!full.ok || !full.body) return full;
+  const lengthHeader = full.headers.get("content-length");
+  let total = Number(lengthHeader);
+  let source = full.body;
+  if (!lengthHeader || !Number.isFinite(total) || total <= 0) {
+    const buffer = await full.arrayBuffer();
+    total = buffer.byteLength;
+    source = new Response(buffer).body;
+  }
+  if (!source) return full;
+
+  const parsed = parseByteRange(rangeHeader, total);
+  if (!parsed) {
+    const headers = new Headers(full.headers);
+    headers.set("Accept-Ranges", "bytes");
+    headers.set("Content-Length", String(total));
+    return new Response(source, {
+      status: full.status,
+      statusText: full.statusText,
+      headers,
+    });
+  }
+  if (parsed.unsatisfiable) {
+    await source.cancel();
+    return new Response(null, {
+      status: 416,
+      headers: {
+        "Content-Range": `bytes */${total}`,
+        "Accept-Ranges": "bytes",
+      },
+    });
+  }
+
+  const headers = new Headers();
+  const type = full.headers.get("content-type");
+  if (type) headers.set("Content-Type", type);
+  headers.set("Accept-Ranges", "bytes");
+  headers.set("Content-Range", `bytes ${parsed.start}-${parsed.end}/${total}`);
+  headers.set("Content-Length", String(parsed.end - parsed.start + 1));
+  headers.set("Cache-Control", "private, no-store");
+  const etag = full.headers.get("etag");
+  if (etag) headers.set("ETag", etag);
+
+  if (request.method === "HEAD") {
+    await source.cancel();
+    return new Response(null, { status: 206, headers });
+  }
+
+  return new Response(sliceStream(source, parsed.start, parsed.end), {
+    status: 206,
+    headers,
+  });
+}
+
 async function sendContact(request, env) {
   if (request.method !== "POST") {
     return json({ ok: false, error: "Use the contact form." }, 405);
@@ -128,6 +256,6 @@ export default {
       return applySecurity(await sendContact(request, env), url.protocol === "https:");
     }
 
-    return applySecurity(await env.ASSETS.fetch(request), url.protocol === "https:");
+    return applySecurity(await fetchAsset(request, env), url.protocol === "https:");
   },
 };
