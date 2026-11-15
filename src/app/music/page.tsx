@@ -2,12 +2,14 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { ContentPanel } from "@/components/content-panel";
 import { PageBanner } from "@/components/page-banner";
+import { pageMeta } from "@/lib/meta";
 import { releases } from "@/lib/site";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMeta({
+  path: "/music/",
   title: "Music",
   description: "Albums, EPs, singles, and remixes by Jackson Kubo.",
-};
+});
 
 export default function MusicPage() {
   return (
@@ -26,7 +28,7 @@ export default function MusicPage() {
                 <Link href={`/${release.slug}`} className="group block">
                   <img
                     src={release.artwork}
-                    alt=""
+                    alt={release.artworkAlt}
                     className="aspect-square w-full object-cover shadow-[0_18px_40px_-24px_rgba(0,0,0,0.8)] transition-[filter] duration-300 group-hover:brightness-110"
                   />
                   <p className="mt-4 font-display text-xl text-white">{release.title}</p>

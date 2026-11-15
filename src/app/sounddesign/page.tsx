@@ -2,12 +2,13 @@ import type { Metadata } from "next";
 import { HeroMedia } from "@/components/hero-media";
 import { ContentPanel } from "@/components/content-panel";
 import { PageBanner } from "@/components/page-banner";
+import { pageMeta } from "@/lib/meta";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMeta({
+  path: "/sounddesign/",
   title: "Sound Design",
-  description:
-    "A sound redesign of Ivern, from League of Legends, by Jackson Kubo.",
-};
+  description: "A sound redesign of Ivern, from League of Legends, by Jackson Kubo.",
+});
 
 export default function SoundDesignPage() {
   return (

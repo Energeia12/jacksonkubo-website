@@ -3,14 +3,16 @@ import { contentFrameClass } from "@/components/content-panel";
 import { CueList } from "@/components/cue-list";
 import { PageBanner } from "@/components/page-banner";
 import { buttonVariants } from "@/components/ui/button";
+import { pageMeta } from "@/lib/meta";
 import { cuesFor, projects } from "@/lib/site";
 import { cn } from "cn";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMeta({
+  path: "/composition/",
   title: "Composition",
   description:
     "Game and interactive scores by Jackson Kubo, including B.L.U.E., BLEED RUNNER, Oosia, and Crescendo.",
-};
+});
 
 export default function CompositionPage() {
   return (
@@ -30,7 +32,13 @@ export default function CompositionPage() {
         >
           <img
             src={"background" in project ? project.background : project.image}
-            alt=""
+            alt={
+              "backgroundAlt" in project
+                ? project.backgroundAlt
+                : "background" in project
+                  ? ""
+                  : project.imageAlt
+            }
             className="absolute inset-0 h-full w-full object-cover"
           />
           <div className={cn(contentFrameClass(), "grow")}>

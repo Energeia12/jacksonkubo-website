@@ -26,7 +26,7 @@ export function ReleasePage({ release }: { release: Release }) {
           </div>
         </div>
       </header>
-      <ContentPanel image={release.artwork} width="max-w-5xl">
+      <ContentPanel image={release.artwork} imageAlt={release.artworkAlt} width="max-w-5xl">
       <div className="grid min-w-0 grid-cols-[minmax(0,1fr)] gap-12 lg:grid-cols-[minmax(0,1fr)_300px]">
         <div className="min-w-0">
           <p className="max-w-[65ch] text-lg leading-relaxed text-[#f3efe6]">{release.description}</p>

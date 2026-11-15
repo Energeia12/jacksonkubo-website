@@ -7,12 +7,14 @@ const frame =
 export function ContentPanel({
   children,
   image,
+  imageAlt = "",
   width = "max-w-6xl",
   underHeader = false,
   className,
 }: {
   children: ReactNode;
   image?: string;
+  imageAlt?: string;
   width?: string;
   underHeader?: boolean;
   className?: string;
@@ -20,7 +22,7 @@ export function ContentPanel({
   return (
     <section className={cn("relative flex grow flex-col", className)}>
       {image ? (
-        <img src={image} alt="" className="absolute inset-0 h-full w-full object-cover" />
+        <img src={image} alt={imageAlt} className="absolute inset-0 h-full w-full object-cover" />
       ) : null}
       <div
         className={cn(

@@ -41,6 +41,7 @@ export function HeroMedia({
       loop
       playsInline
       poster={poster}
+      aria-hidden="true"
     >
       <source src={webm} type="video/webm" />
       <source src={mp4} type="video/mp4" />

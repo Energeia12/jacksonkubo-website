@@ -1,6 +1,14 @@
 const INBOX = "jacksonkubokawa@gmail.com";
 const FROM = { email: "website@jacksonkubo.com", name: "Jackson Kubo" };
 
+const SECURITY_HEADERS = {
+  "X-Content-Type-Options": "nosniff",
+  "Referrer-Policy": "strict-origin-when-cross-origin",
+  "X-Frame-Options": "SAMEORIGIN",
+};
+
+const HSTS = "max-age=31536000; includeSubDomains";
+
 function json(data, status = 200) {
   return new Response(JSON.stringify(data), {
     status,
@@ -13,6 +21,34 @@ function json(data, status = 200) {
 
 function isEmail(value) {
   return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
+}
+
+function applySecurity(response, hsts) {
+  const headers = new Headers(response.headers);
+  for (const [key, value] of Object.entries(SECURITY_HEADERS)) {
+    headers.set(key, value);
+  }
+  if (hsts) headers.set("Strict-Transport-Security", HSTS);
+  return new Response(response.body, {
+    status: response.status,
+    statusText: response.statusText,
+    headers,
+  });
+}
+
+function redirect(location, hsts) {
+  const headers = new Headers({ Location: location });
+  for (const [key, value] of Object.entries(SECURITY_HEADERS)) {
+    headers.set(key, value);
+  }
+  if (hsts) headers.set("Strict-Transport-Security", HSTS);
+  return new Response(null, { status: 301, headers });
+}
+
+function needsTrailingSlash(pathname) {
+  if (pathname === "/" || pathname.endsWith("/") || pathname === "/api/contact") return false;
+  const last = pathname.slice(pathname.lastIndexOf("/") + 1);
+  return !last.includes(".");
 }
 
 async function sendContact(request, env) {
@@ -70,16 +106,28 @@ async function sendContact(request, env) {
 export default {
   async fetch(request, env) {
     const url = new URL(request.url);
+    const onSite = url.hostname === "jacksonkubo.com" || url.hostname === "www.jacksonkubo.com";
 
-    if (url.hostname === "jacksonkubo.com") {
-      url.hostname = "www.jacksonkubo.com";
-      return Response.redirect(url.toString(), 301);
+    if (onSite && (url.protocol !== "https:" || url.hostname !== "www.jacksonkubo.com")) {
+      const target = new URL(url);
+      target.protocol = "https:";
+      target.hostname = "www.jacksonkubo.com";
+      return redirect(target.toString(), url.protocol === "https:");
+    }
+
+    if (
+      (request.method === "GET" || request.method === "HEAD") &&
+      needsTrailingSlash(url.pathname)
+    ) {
+      const target = new URL(url);
+      target.pathname = `${url.pathname}/`;
+      return redirect(target.toString(), url.protocol === "https:");
     }
 
     if (url.pathname === "/api/contact") {
-      return sendContact(request, env);
+      return applySecurity(await sendContact(request, env), url.protocol === "https:");
     }
 
-    return env.ASSETS.fetch(request);
+    return applySecurity(await env.ASSETS.fetch(request), url.protocol === "https:");
   },
 };

@@ -2,8 +2,9 @@ import scoreAudio from "@/content/score-audio.json";
 
 export const site = {
   name: "Jackson Kubo",
-  title: "Jackson Kubo | Music Composer and Sound Designer",
-  description: "Jackson Kubo creates music for an infinite universe.",
+  title: "Jackson Kubo | Composer, Sound Designer, and Project Director",
+  description:
+    "Jackson Kubo is a composer and sound designer, and Project Director and Audio, Gameplay Design & Production Lead on B.L.U.E. at BlueHeaven Games.",
   url: "https://www.jacksonkubo.com",
   email: "jacksonkubokawa@gmail.com",
 } as const;
@@ -44,7 +45,9 @@ export type Cue = {
 export const cues = scoreAudio as Cue[];
 
 export function cuesFor(project: string) {
-  return cues.filter((cue) => cue.project === project);
+  return cues
+    .filter((cue) => cue.project === project)
+    .map((cue) => ({ ...cue, url: `/audio/${cue.id}.mp3` }));
 }
 
 export function formatDuration(seconds: number) {
@@ -74,9 +77,9 @@ export const releases: Release[] = [
     year: "2026",
     description: "A remix of Gabe Holmes’ Golden Age.",
     artwork: "/media/golden.jpg",
-    artworkAlt: "A hand reaching through bright blue water, artwork for Golden Age",
+    artworkAlt: "A hand reaching through bright blue water, cover art for Golden Age",
     spotifyId: "15dz5h24rackcuSH6hWrSR",
-    appleUrl: "https://music.apple.com/us/artist/jackson-kubo/1664612247",
+    appleUrl: "https://music.apple.com/us/album/golden-age-jackson-kubo-remix-single/1872125918",
     tracks: ["Gabe Holmes - Golden Age (Jackson Kubo Remix)"],
   },
   {
@@ -86,7 +89,8 @@ export const releases: Release[] = [
     year: "2025",
     description: "An electronic album about the ever-changing digital world.",
     artwork: "/media/digital.jpg",
-    artworkAlt: "Album artwork for Digital Landscape",
+    artworkAlt:
+      "Cover art for Digital Landscape: a wireframe face over mountains, with neon beams across a lake",
     spotifyId: "6FiBq12zSvIx1YgliMJoVD",
     appleUrl: "https://music.apple.com/us/album/digital-landscape/1824597267",
     tracks: [
@@ -109,7 +113,7 @@ export const releases: Release[] = [
     year: "2025",
     description: "An ambient synth EP.",
     artwork: "/media/crystal.jpg",
-    artworkAlt: "Album artwork for Crystal Sea",
+    artworkAlt: "Cover art for Crystal Sea: a burst of pink, blue, and white light",
     spotifyId: "1YrCj9MC5RvvgWyMlbVqP8",
     appleUrl: "https://music.apple.com/us/album/crystal-sea-ep/1791766901",
     tracks: [
@@ -127,7 +131,8 @@ export const releases: Release[] = [
     year: "2024",
     description: "A standalone single.",
     artwork: "/media/save.jpg",
-    artworkAlt: "Album artwork for Save the World!!!",
+    artworkAlt:
+      "Cover art for Save the World!!!: a pastel astronaut floating among mushrooms, eyes, and a moon",
     spotifyId: "6170P9hOOFkJepYk8MqUmi",
     appleUrl: "https://music.apple.com/us/album/save-the-world-single/1740082376",
     tracks: ["Save The World!!!"],
@@ -139,7 +144,8 @@ export const releases: Release[] = [
     year: "2024",
     description: "A two-song single.",
     artwork: "/media/happy.jpg",
-    artworkAlt: "Album artwork for As Long as You're Happy",
+    artworkAlt:
+      "Cover art for As Long as You're Happy: a black-and-white photo of an adult and a child holding hands",
     spotifyId: "4Qv7SrMfyC6PYRQEgiuC7Q",
     appleUrl:
       "https://music.apple.com/us/album/as-long-as-youre-happy-single/1726794273",
@@ -152,7 +158,8 @@ export const releases: Release[] = [
     year: "2023",
     description: "An electronic EP on existential experience.",
     artwork: "/media/process.jpg",
-    artworkAlt: "Album artwork for The Process of Life",
+    artworkAlt:
+      "Cover art for The Process of Life: an eye filled with water, flowers, and fish against a star field",
     spotifyId: "4PqKBi1tEGmwjjVafdVQzV",
     appleUrl: "https://music.apple.com/us/album/the-process-of-life-ep/1726514788",
     tracks: [
@@ -171,7 +178,8 @@ export const releases: Release[] = [
     year: "2023",
     description: "An indie pop love letter, and his first album.",
     artwork: "/media/dreaming.jpg",
-    artworkAlt: "Album artwork for Dreaming of You",
+    artworkAlt:
+      "Cover art for Dreaming of You: Jackson Kubo under a tree, holding a pink telephone",
     spotifyId: "0I7NWLvDkEoS1ZWjJAy2yz",
     appleUrl: "https://music.apple.com/us/album/dreaming-of-you/1726214826",
     tracks: [
@@ -202,9 +210,11 @@ export const projects = [
     id: "blue",
     title: "B.L.U.E.",
     description:
-      "B.L.U.E. (Build, Launch, Upgrade, Evolve) is a multiplayer PvP space-sandbox engineering game. You play a BlueHeaven Aerospace engineer: design spaceships that follow real-world physics, load them with as much firepower as they can carry, and test them against friends. Mind the heat.",
+      "B.L.U.E. (Build. Launch. Upgrade. Evolve.) is a space combat game of modular ship building and combat. Its game modes include Convergence, a co-op PvE roguelike against waves of enemy ships, and Divergence, a competitive PvP match. Part Evolutions transmute ship Parts into new combat capabilities as the fight goes on.",
     image: "/media/blue-screen.jpg",
     imageAlt: "",
+    backgroundAlt:
+      "A triangular spacecraft flies above a pale planet toward a glowing ring in a dark nebula, a still from B.L.U.E.",
     links: [
       {
         label: "Play on Steam",
@@ -222,7 +232,8 @@ export const projects = [
     description:
       "BLEED RUNNER is a 2.5D cyberpunk beat-em-up. A lone knight, stricken with a plague, searches a mysterious spaceship for the cure and survives by grabbing, throwing, and pummeling enemies for blood.",
     image: "/media/bleed-art.png",
-    imageAlt: "Cover art for the BLEED RUNNER original soundtrack",
+    imageAlt:
+      "Cover art for the BLEED RUNNER soundtrack: a pixel-art armored figure with a large pink weapon, labeled BLEED RUNNER and SOUNDTRACK",
     links: [
       {
         label: "Play on Steam",
@@ -245,8 +256,10 @@ export const projects = [
       "Inspired by quantum mechanics, Oosia is a puzzle adventure about making abstract mental connections.",
     image: "/media/oosia-art.png",
     background: "/media/crescendo.jpg",
+    backgroundAlt:
+      "A voxel concert hall with a red curtain, organ pipes, and empty seats, the setting for Oosia",
     imageAlt: "A small voxel house with the letters of Oosia floating above the garden",
-    links: [{ label: "Visit Oosia", href: "https://joeycents.com/oosia" }],
+    links: [],
   },
   {
     id: "crescendo",
@@ -255,6 +268,8 @@ export const projects = [
       "Crescendo is a Unity project that demonstrates interactive music techniques in Wwise.",
     image: "/media/crescendo-still.jpg",
     imageAlt: "",
+    backgroundAlt:
+      "A low-poly blue and green sphere hovers over a patterned floor in front of a neon city, a still from the Crescendo demo",
     links: [],
     video: {
       id: "G7QjpHo0Vdc",

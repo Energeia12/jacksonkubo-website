@@ -1,11 +1,13 @@
 import type { Metadata } from "next";
 import { ContentPanel } from "@/components/content-panel";
+import { pageMeta } from "@/lib/meta";
 import { site } from "@/lib/site";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMeta({
+  path: "/privacy/",
   title: "Privacy",
   description: "How jacksonkubo.com handles messages, playback, embeds, and cookies.",
-};
+});
 
 export default function PrivacyPage() {
   return (
@@ -57,10 +59,9 @@ export default function PrivacyPage() {
         <section className="space-y-4">
           <h2 className="font-display text-2xl text-white">Listening and watching</h2>
           <p>
-            Pressing play on a score cue requests that audio file from the service storing it.
-            Those files are currently served by Wix at music.wixstatic.com. The request carries the
-            usual connection details that any file download does, such as an IP address. Playback
-            does not require a name.
+            Pressing play on a score cue requests that audio file from this site. The request
+            carries the usual connection details that any file download does, such as an IP address.
+            Playback does not require a name.
           </p>
           <p>
             Composition and Sound Design embed videos with YouTube’s privacy-enhanced player

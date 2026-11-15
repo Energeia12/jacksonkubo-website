@@ -22,7 +22,7 @@ export default function HomePage() {
             />
             <Wordmark
               src="/media/wordmark-role.png"
-              alt="Composer and sound designer"
+              alt="Composer, sound designer, and project director"
               className="mt-4 max-h-7 sm:mt-5 sm:max-h-9"
             />
           </h1>
@@ -44,9 +44,9 @@ export default function HomePage() {
                 the music.
               </p>
               <p>
-                He is Audio Lead on{" "}
+                He is Project Director and Audio, Gameplay Design & Production Lead on{" "}
                 <a
-                  href="https://store.steampowered.com/app/4681380/BLUE/"
+                  href="https://www.blueheavengames.com/"
                   className="underline decoration-white/40 underline-offset-4 hover:decoration-white"
                   target="_blank"
                   rel="noreferrer"
@@ -54,7 +54,7 @@ export default function HomePage() {
                   B.L.U.E.
                   <span className="sr-only"> (opens in a new tab)</span>
                 </a>{" "}
-                (Build, Launch, Upgrade, Evolve) at BlueHeaven Aerospace Corporation.
+                (Build. Launch. Upgrade. Evolve.) at BlueHeaven Games.
               </p>
             </div>
           </div>

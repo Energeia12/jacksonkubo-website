@@ -2,12 +2,14 @@ import type { Metadata } from "next";
 import { ContactForm } from "@/components/contact-form";
 import { ContentPanel } from "@/components/content-panel";
 import { PageBanner } from "@/components/page-banner";
+import { pageMeta } from "@/lib/meta";
 import { site } from "@/lib/site";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMeta({
+  path: "/contactme/",
   title: "Contact",
   description: "Professional inquiries for composer and sound designer Jackson Kubo.",
-};
+});
 
 export default function ContactPage() {
   return (
