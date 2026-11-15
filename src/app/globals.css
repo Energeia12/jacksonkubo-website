@@ -159,6 +159,18 @@
   color: #141018;
 }
 
+@media (max-width: 767px) {
+  body:has(#site-volume) {
+    padding-bottom: 5.5rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .volume-slider {
+    appearance: slider-vertical;
+  }
+}
+
 @layer components {
   .home-stripe {
     height: 3px;

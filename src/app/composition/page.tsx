@@ -64,7 +64,7 @@ export default function CompositionPage() {
                   <div className="overflow-hidden bg-black">
                     <iframe
                       title={project.video.title}
-                      src={`https://www.youtube-nocookie.com/embed/${project.video.id}`}
+                      src={`https://www.youtube-nocookie.com/embed/${project.video.id}?enablejsapi=1`}
                       className="aspect-video w-full"
                       allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                       allowFullScreen

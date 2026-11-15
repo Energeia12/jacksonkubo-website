@@ -33,7 +33,7 @@ export default function SoundDesignPage() {
               <div className="overflow-hidden bg-black">
                 <iframe
                   title="Jackson Kubo — Sound Redesign for Ivern"
-                  src="https://www.youtube-nocookie.com/embed/iBQ_OHFTXoM"
+                  src="https://www.youtube-nocookie.com/embed/iBQ_OHFTXoM?enablejsapi=1"
                   className="aspect-video w-full"
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                   allowFullScreen
